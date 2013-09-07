@@ -155,8 +155,6 @@
     const FETCH_MODE_OBJECT = 3;
     const FETCH_MODE_CLASS = 4;
 
-    const ERROR_DUPLICATE_KEY = 23000;
-    
     private static $FetchModes = array(EasyPDO::FETCH_MODE_NUMERIC_ARRAY => PDO::FETCH_NUM,
                                        EasyPDO::FETCH_MODE_ASSOCIATIVE_ARRAY => PDO::FETCH_ASSOC,
                                        EasyPDO::FETCH_MODE_OBJECT => PDO::FETCH_OBJ,
@@ -483,7 +481,7 @@
       }
       catch (PDOException $e)
       {
-        if ($e->getCode() == EasyPDO::ERROR_DUPLICATE_KEY)
+        if ($e->getCode() == ERROR_DUPLICATE_KEY)
           throw new EDuplicateKey($e->getMessage());
         else
           throw $e;
