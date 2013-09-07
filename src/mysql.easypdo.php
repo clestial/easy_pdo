@@ -67,6 +67,8 @@
     private $LastParams = array();
 
     function __construct($server, $database, $username = null, $password = null, $charset = 'utf8', $collate = 'utf8_unicode_ci') {
+      define('ERROR_DUPLICATE_KEY', 23000);
+      
       if (stripos($server, ':')) {
         $split = explode(':', $server);
         $server = $split[0] . ';port=' . $split[1];
