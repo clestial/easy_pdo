@@ -44,6 +44,9 @@
  * 
  * CHANGELOG by clestial since version 0.1.6
  * 
+ * 2026-10-09
+ * Reprepare unchanged SQL when the statement was cleared by a transaction or reset.
+ * 
  * 0.1.7
  * Changed class so it is no longer a singleton. 
  * 
@@ -329,7 +332,7 @@
 
     private function PrepareSQL($sql)
     {
-      if ($sql != $this->LastSQL)
+      if (!isset($this->Query) || ($sql != $this->LastSQL))
       {
         $this->UpdateQueryLog($sql);
         $this->Query = null;
